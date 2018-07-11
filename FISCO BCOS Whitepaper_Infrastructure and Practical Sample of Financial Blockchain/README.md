@@ -13,7 +13,7 @@
 
 ## Table of Contents
 - [Introduction](#Introduction)
-- [1 Blockchain Alliance – Vision and Main Objectives](#11-Blockchain Alliance – Vision and Main Objectives)
+- [1 Blockchain Alliance – Vision and Main Objectives](#1-Blockchain Alliance – Vision and Main Objectives)
     - [1.1 About FISCO and FISCO Open Source Working Group](#11-About FISCO and FISCO Open Source Working Group)
     - [1.2 Introduction of the First Batch of Members of the FISCO Working Group](#12-Introduction of the First Batch of Members of the FISCO Working Group)
     - [1.3 Mission of the FISCO Open Source Working Group](#13-Mission of the FISCO Open Source Working Group)
