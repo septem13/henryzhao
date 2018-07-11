@@ -168,7 +168,8 @@ The technical features of this protocol include the following:
 •  Encryption technology used in the communication process to ensure the confidentiality of the communication layer.
 
 ![image3.1](./images/3-1.jpg "Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)")
-<div align=center>Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)</div>
+<div align=center>Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)</div>  
+
 
 In the business interactions between financial institutions, the AMOP protocol can provide flexibility and interoperability, and can also be seamlessly integrated within a blockchain network to execute even complicated transactional scenarios. Let us consider the following situation:
 
@@ -213,7 +214,8 @@ As the above technical issues affect the system, the system parallel capability 
 We first conducted an in-depth analysis of the consensus process of the FISCO BCOS platform and distilled its various components, such as calculation steps, nodes, etc. The guiding objective was to run the calculation of all nodes at each phase in parallel, irrespective of whether or not a node was a leader node or a voting node. When one node is computing to verify a batch of transactions, all other nodes are also synchronized to compute and vote on it without waiting for the others. 
 
 ![image3.2](./images/3-2.jpg "Diagram 3-2 Parallel PBFT Consensus Procedures")
-<div align=center>Diagram 3-2 Parallel PBFT Consensus Procedures</div>
+<div align=center>Diagram 3-2 Parallel PBFT Consensus Procedures</div>  
+
  
 Building from this, we have been able to further reduce time-consuming and redundant computing processes. Through network path optimization and caching of repeated computing results, the time required to complete each step of the consensus process is minimized.   
 
@@ -230,7 +232,8 @@ Considering that the Standard RAFT protocol is not Byzantine fault-tolerant, it 
 The standard RAFT consensus algorithm has two steps: the first is the “election” process that chooses a leader, and the second is the “ledger keeping” process where the leader is responsible for ledger keeping and block creation and the other follower nodes create the blocks simultaneously. When the leader is down, all the¬¬¬ follower nodes initiate the election workflow to elect another leader again. 
 
 ![image3.3](./images/3-3.jpg "Diagram3-3 Procedures of Standard RAFT Consensus Algorithm")
-<div align=center>Diagram3-3 Procedures of Standard RAFT Consensus Algorithm</div>
+<div align=center>Diagram3-3 Procedures of Standard RAFT Consensus Algorithm</div>  
+
 
 Additionally, we further modified the RAFT algorithm mentioned above to optimize against abnormal scenarios such as network jitter, network latency and network partition. These efforts aim at making the RAFT consensus algorithm usable in less favorable network environments. BCOS RAFT consensus algorithm possesses an “N/2 level” fault tolerance capability, meaning that only half of the nodes are needed to provide a normal level of service.    
 
@@ -264,13 +267,14 @@ The platform therefore provides a foundation for the strategy and implementation
 After dividing a blockchain into many groups, any number of different transaction scenarios may exchange between the different groups. In practice, these are communication and transaction exchanges between different blockchain systems, and exhibit qualities somewhat akin to a “cross-chain” structure. With regards to this type connectivity, what is important to note is the reliability of inter-group communications, the completeness and degree of consistency of the distributed transactions, as well as the level of safety and mutual trust created due to all transactions between groups being verifiable, tamper-proof, and traceable.
  
 ![image3.5](./images/3-5.jpg "Diagram3-5 Parallel Computing in Cross-chain Interaction")
-<div align=center>Diagram3-5 Parallel Computing in Cross-chain Interaction</div>
+<div align=center>Diagram3-5 Parallel Computing in Cross-chain Interaction</div>  
  
  
 In this document, we have included a proposed solution to service those accounts that experience a very high-frequency of transactions, as is commonly found across the financial industry. In many cases involving financial transactions, there may be a large number of independent user accounts performing transactions intensively targeted to one or several accounts. If users pay to a popular merchant’s account, or if they frequently withdraw cash, request coupons, bonus points or other assets from a specific account, the number of the transactions received by that single account can be relatively large. These merchant accounts that receive a large volume of transactions are called “high frequency accounts”. After completing transactions with users, these high frequency accounts need to aggregate all the results, update their general ledger, calculate their balance, and so forth in order to complete their specific business processes such as clearing and settlement. 
  
 ![image3.6](./images/3-6.jpg "Diagram3-6 The Framework of High Frequency Accounts Solution")
-<div align=center>Diagram3-6 The Framework of High Frequency Accounts Solution</div>
+<div align=center>Diagram3-6 The Framework of High Frequency Accounts Solution</div>  
+ 
  
 Since the transaction volume of high frequency accounts is relatively large and that all users may even transact with them, we designed a structure that uses multiple parallel transacting chains. The first step is to divide the users into groups according to a specific model. An independent blockchain is then built for each group and it is called a “user transaction chain”. For example, given an estimation of 5,000,000 users, we have defined 5 groups, each able to accommodate up to 1,000,000 users (note: the actual maximum number of users per group varies and requires testing and adjustment according to specific circumstances).  In this case, we have created 5 “user transaction chains”. The high frequency account is then made part of a high frequency account blockchain network (it can be allocated to a group as well). This high frequency account is used in near real-time for the aggregation of the accounting ledger performed by each user transaction chain and will be dedicated to managing the accounts for the customer transaction chains (e.g. total revenue, total expenditure, real-time balance of account, etc.).  
 
