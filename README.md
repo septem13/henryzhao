@@ -145,7 +145,7 @@ cd $fiscobcos/cert
 
 打开java项目的applicationContext.xml文件,部分信息可以先用默认的,先关注这些配置项
 
-![Java Config](/images/java config.png)
+![Java Config](/images/javaconfig.png)
 
 找到”区块链节点信息配置”一节，配置密码  
 ```
