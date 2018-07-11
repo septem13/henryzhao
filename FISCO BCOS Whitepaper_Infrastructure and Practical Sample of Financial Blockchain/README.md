@@ -168,7 +168,7 @@ The technical features of this protocol include the following:
 •  Encryption technology used in the communication process to ensure the confidentiality of the communication layer.
 
 ![image3.1](./images/3-1.jpg "Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)")
-<div align=center>Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)</div>  
+<div align=center>Diagram 3-1 Architecture of AMOP (Advanced Messenger On-chain Protocol)</div>
 
 
 In the business interactions between financial institutions, the AMOP protocol can provide flexibility and interoperability, and can also be seamlessly integrated within a blockchain network to execute even complicated transactional scenarios. Let us consider the following situation:
