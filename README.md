@@ -34,11 +34,7 @@ P.S.也可以直接参考[存证业务样例](https://github.com/FISCO-BCOS/evid
 
 本样例提供一个最简智能合约，演示对字符串和整型数的基本操作，包括设置和读取计数器名字、增加计数、读取当前计数。并通过receipt log的方式，把修改记录log到block里，供客户端查询参考。这里提一下，receipt log用处很大，可以是区块链和业务端同步交易处理过程和结果信息的有效渠道。 合约代码如下，非常的简单。
 
-
-
-[Counter.sol](/images/counter.sol)
-
-
+[Counter.sol](/images/Counter.sol)
 
 首先到下载编译了web3sdk的linux服务器上，进入web3sdk目录，如/mydata/web3sdk。
 
@@ -149,25 +145,27 @@ cd $fiscobcos/cert
 
 打开java项目的applicationContext.xml文件,部分信息可以先用默认的,先关注这些配置项
 
-![img](/images/javaconfig.png)
+![Java Config](/images/java config.png)
 
-找到”区块链节点信息配置”一节，配置密码
+找到”区块链节点信息配置”一节，配置密码  
+```
+    <property name="keystorePassWord" value="【生成client.keystore时对应的密码】" />
 
-​    <property name="keystorePassWord" value="【生成client.keystore时对应的密码】" />
-
-​    <property name="clientCertPassWord" value="【生成client.keystore时对应的密码】" />
+    <property name="clientCertPassWord" value="【生成client.keystore时对应的密码】" />
+```
 
 配置节点信息：
-
+```
 <property name="connectionsStr">
 
-​	<list>
+    <list>
 
-​	    <value>【节点id】@【IP】:【端口】</value>
+	      <value>【节点id】@【IP】:【端口】</value>
 
-​	</list>
+    </list>
 
 </property>
+```
 
 节点id、ip、端口，和需要连接的节点必须一致。
 
@@ -178,23 +176,23 @@ cd $fiscobcos/cert
 在list段里可以配置多个value，对应多个节点的信息，以实现客户端多活通信。
 
 另外，可以进行系统合约地址配置，在调用SystemProxy|AuthorityFilter等系统合约工具时需要配置。对应信息需要搭链时的服务器环境去查询：
+```
+	<bean id="toolConf" class="org.bcos.contract.tools.ToolConf">
 
-​	<bean id="toolConf" class="org.bcos.contract.tools.ToolConf">
+	    <property name="systemProxyAddress" value="【系统合约代理地址,对应节点config.json里的systemproxyaddress】" />
 
-​		<property name="systemProxyAddress" value="【系统合约代理地址,对应节点config.json里的systemproxyaddress】" />
+     <!--GOD账户的私钥-->
 
-​		<!--GOD账户的私钥-->
+     <property name="privKey" value="【对应搭链创建god帐号环境$fiscobcos/tool/godInfo.txt里的privKey】" />
 
-​		<property name="privKey" value="【对应搭链创建god帐号环境$fiscobcos/tool/godInfo.txt里的privKey】" />
+     <!--GOD账户-->
 
-​		<!--GOD账户-->
+	    <property name="account" value="【对应搭链创建god帐号环境$fiscobcos/tool/godInfo.txt里的address】" />
 
-​		<property name="account" value="【对应搭链创建god帐号环境$fiscobcos/tool/godInfo.txt里的address】" />
+    	<property name="outPutpath" value="./output/" />
 
-​		<property name="outPutpath" value="./output/" />
-
-​	</bean>
-
+	</bean>
+```
 ## 6. 编写java客户端代码调用合约（在客户端开发环境）
 
 示例用一个单独的CounterClient.java文件来包含所有相关代码，包括初始化客户端，部署合约，修改名字，发交易调用计数器计数，查询交易回执等。注意项目目录下的Counter.java是由web3sdk的compile.sh工具根据Counter.sol合约自动生成的，不需要进行修改。
