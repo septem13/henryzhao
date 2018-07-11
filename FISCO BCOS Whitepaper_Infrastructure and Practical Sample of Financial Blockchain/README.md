@@ -1,4 +1,5 @@
-# <div align=center>Financial Blockchain Open Source Platform FISCO BCOS Whitepaper</div>
+# <div align=center>Financial Blockchain Open Source Platform</div>
+# <div align=center>FISCO BCOS Whitepaper</div>
 ## <div align=center>Financial Blockchain Infrastructure & Practical Examples</div>
 ### <div align=center>v1.0</div>  
 
